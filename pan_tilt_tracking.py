@@ -284,20 +284,18 @@ if __name__ == "__main__":
         processVoiceAlarm = Process(target=main_voiceAlarm, 
             args=(clsId, distance2, angle, trafLight))
 		
-        # start all 8 processes
+        # start all 5 processes
         processObjectCenter.start()
-
         processDistanceForward.start()
         processDistanceTarget.start()
-        #processVibrateAlarm.start()
+        processVibrateAlarm.start()
         processVoiceAlarm.start()
 
-        # join all 4 processes
+        # join all 5 processes
         processObjectCenter.join()
-
         processDistanceForward.join()
         processDistanceTarget.join()
-        #processVibrateAlarm.join()
+        processVibrateAlarm.join()
         processVoiceAlarm.join()
 
         # disable the servos
