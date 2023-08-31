@@ -1,0 +1,22 @@
+[name]
+model_name=coco
+
+[train-configure]
+epochs=500
+steps=150,250
+batch_size=256
+subdivisions=1
+learning_rate=0.001
+
+[model-configure]
+pre_weights=None
+classes=11
+width=352
+height=352
+anchor_num=3
+anchors=49.28,50.67, 79.04,165.99, 150.49,249.81, 219.55,60.08, 244.26,146.15, 297.33,300.60
+
+[data-configure]
+train=/content/crosswalk/train.txt
+val=/content/crosswalk/valid.txt
+names=/content/drive/MyDrive/new_yolo/Yolo-FastestV2-main/data/coco.names
