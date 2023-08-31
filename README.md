@@ -1,6 +1,11 @@
 # team_WST
 team - WST
 
+## Run
+```
+python3 pan_tilt_tracking.py --data /home/pi/wst/WST-main/ver_2/coco.data
+```
+
 ## Reference
 model - Yolo-fastestV2 : https://github.com/dog-qiuqiu/Yolo-FastestV2
 
