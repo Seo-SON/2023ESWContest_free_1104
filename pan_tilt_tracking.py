@@ -78,9 +78,6 @@ def obj_center(clsId, angle, trafLight):
 
     pan = 0.0
     tlt = 0.0
-
-
-    # cfg 대신 값들로 변경
     
     # initialize the object center finder
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -92,7 +89,7 @@ def obj_center(clsId, angle, trafLight):
 
     time.sleep(1.0)
 
-	# loop indefinitely
+    # loop indefinitely
     while True:
         frame = cap.read()
 
@@ -228,7 +225,6 @@ def obj_center(clsId, angle, trafLight):
 
 
 def in_range(val, start, end):
-	# determine the input value is in the supplied range
     return (val >= start and val <= end)
 
 
@@ -259,24 +255,23 @@ if __name__ == "__main__":
 	
     # start a manager for managing process-safe variables
     with Manager() as manager:
-		# enable the servos
+	# enable the servos
         servo.pwmActive(True)
 		
         clsId = manager.Value("i", 8)
         angle = manager.Value("i", 0)
 
-		# sonar sensor
+	# sonar sensor
         distance1 = manager.Value("f", 5000.0)
         distance2 = manager.Value("f", 5000.0)
 
         trafLight = manager.Value("i", -1)
 
-        # we have 5 independent processes
-		# 1. objectCenter  - finds the object's coord, pan & tilt
-		# 2. distanceForward - detect forward object with sonar(fixed direction)
-		# 3. distanceTarget - detect target object with sonar(same direction with camera)
-		# 4. vibrateAlarm - vibrate with distance
-		# 5. voiceAlarm - alarm with voice
+	# 1. objectCenter  - finds the object's coord, pan & tilt
+	# 2. distanceForward - detect forward object with sonar_hc_sr04(fixed direction)
+	# 3. distanceTarget - detect target object with sonar_uart(same direction with camera)
+	# 4. vibrateAlarm - vibrate with distance
+	# 5. voiceAlarm - alarm with voice
         processObjectCenter = Process(target=obj_center,
                 args = (clsId, angle, trafLight))
 
@@ -284,8 +279,8 @@ if __name__ == "__main__":
 			args=(sonar_hc_sr04, distance1))
         processDistanceTarget = Process(target=distance,
 			args=(sonar_uart, distance2))
-        #processVibrateAlarm = Process(target=vibrateAlarm,
-		#	args=(distance1, distance2))
+        processVibrateAlarm = Process(target=vibrateAlarm,
+			args=(distance1, distance2))
         processVoiceAlarm = Process(target=main_voiceAlarm, 
             args=(clsId, distance2, angle, trafLight))
 		
