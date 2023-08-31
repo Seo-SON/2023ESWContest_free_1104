@@ -1,9 +1,9 @@
 from multiprocessing import Manager
 from multiprocessing import Process
-from servo_v2 import servo
-from ultrasonic_v2 import sonar_uart, sonar_hc_sr04
-from vibrator_v2 import vibrator
-from voiceAlarm_v2 import *
+from Servo import servo
+from Sonar import sonar_uart, sonar_hc_sr04
+from Vibrator import vibrator
+from VoiceAlarm import *
 import signal, time, sys, cv2, queue, threading, os, torch, argparse
 
 sys.path.append("/home/pi/wst/WST-main/ver_2/Yolo-FastestV2")
@@ -85,7 +85,7 @@ def obj_center(clsId, angle, trafLight):
     # initialize the object center finder
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model_ = model.detector.Detector(cfg["classes"], cfg["anchor_num"], True).to(device)
-    model_.load_state_dict(torch.load('/home/pi/wst/WST-main/ver_2/coco-330-epoch-0.541536ap-model.pth', map_location=device))
+    model_.load_state_dict(torch.load('/home/pi/wst/WST-main/ver_2/coco-400-epoch-0.538768ap-model.pth', map_location=device))
 
     #sets the module in eval node
     model_.eval()

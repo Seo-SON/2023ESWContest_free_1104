@@ -53,5 +53,5 @@ def voiceAlarm(id, dist, angle, trafLight):
 
 
 if __name__ == "__main__":
-    voiceAlarm(2, 100, 30)
+    voiceAlarm(2, 100, 30, -1)
 

@@ -1,6 +1,6 @@
 DFRobot_RaspberryPi_A02YYUW.py
 best_200.pt
 objCenter.py
-pan_tilt_tracking.py
-pan_tilt_tracking_v2.py
+pan_tilt_tracking_1.py
+pan_tilt_tracking_2.py
 __pycache__
