@@ -85,7 +85,7 @@ def obj_center(clsId, angle, trafLight):
     # initialize the object center finder
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model_ = model.detector.Detector(cfg["classes"], cfg["anchor_num"], True).to(device)
-    model_.load_state_dict(torch.load('/home/pi/wst/WST-main/ver_2/coco-250-epoch-0.539093ap-model.pth', map_location=device))
+    model_.load_state_dict(torch.load('/home/pi/wst/WST-main/ver_2/coco-330-epoch-0.541536ap-model.pth', map_location=device))
 
     #sets the module in eval node
     model_.eval()
